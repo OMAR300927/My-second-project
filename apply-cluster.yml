@@ -1,0 +1,13 @@
+---
+- hosts: local_cluster
+  gather_facts: no
+  vars_files:
+    - vault.yml
+
+  vars:
+    ansible_user: "omsa3"
+    ansible_password: "{{ local_password }}"
+
+  tasks:
+    - name: Apply all K8s cluster
+      ansible.builtin.raw: kubectl apply -f C:/My-projects/myproj2/K8s/

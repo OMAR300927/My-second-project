@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: html
+spec:
+  selector:
+    matchLabels:
+      app: html
+  template:
+    metadata:
+      labels:
+        app: html
+    spec:
+      containers:
+      - name: html-container
+        image: omarsa999/mysecondimage:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: APP_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: html-secret
+              key: username
+        - name: APP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: html-secret
+              key: password
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            memory: "256Mi"
+            cpu: "250m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: html-service
+spec:
+  selector:
+    app: html
+  ports:
+  - port: 80
+    targetPort: 80
