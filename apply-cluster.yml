@@ -10,4 +10,4 @@
 
   tasks:
     - name: Apply all K8s cluster
-      ansible.builtin.raw: kubectl apply -f C:/My-projects/myproj2/K8s/
+      ansible.builtin.raw: kubectl apply -f C:/My-second-project/K8s/
