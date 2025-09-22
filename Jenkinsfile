@@ -14,7 +14,7 @@ pipeline {
                                 passwordVariable: 'DOCKER_PASS')]) {
                     bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
                 }
-                bat 'docker build -t omarsa999/mysecondimage:%BUILD_NUMBER% ./myproj2/htmlpage'
+                bat 'docker build -t omarsa999/mysecondimage:%BUILD_NUMBER% ./htmlpage'
                 bat 'docker push omarsa999/mysecondimage:%BUILD_NUMBER%'
 
                 bat "docker tag omarsa999/mysecondimage:%BUILD_NUMBER% omarsa999/mysecondimage:latest"
